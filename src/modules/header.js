@@ -1,36 +1,33 @@
 
 
-export function header() {
+
+export function header(homePage, supportPage, resetPage, featuresPage) {
   let container = document.getElementById("header");
-  
-  let logoContainer = document.createElement("div");
-  let navContainer = document.createElement("div");
-
-  let featuresButton = document.createElement("button");
-  let supportButton = document.createElement("button");
-
-  container.style.display = "flex";
-  container.style.border = "1px solid black";
+  container.classList.add("container"); 
   container.style.height = "100px";
   
   
-  logoContainer.style.flex = "auto";
-  logoContainer.classList.add("logo");
+  let logoContainer = document.createElement("div");
+  logoContainer.classList.add("logo", "container");
   logoContainer.style.flexGrow = "2";
-  logoContainer.style.border = "1px solid black";
+  let btn = document.createElement("button");
+  btn.textContent = "Logo";
+  logoContainer.appendChild(btn);
   
-  
-  navContainer.style.display = "flex";
+  let navContainer = document.createElement("div");
+  navContainer.classList.add("nav","container");
   navContainer.style.flex = "auto";
-  navContainer.classList.add("nav");
+  
 
-  featuresButton.style.flex = "auto";
-  featuresButton.classList.add("features");
+  let featuresButton = document.createElement("button");
+  featuresButton.classList.add("navButton");
   featuresButton.textContent = "Features";
 
-  supportButton.style.flex = "auto";
+  let supportButton = document.createElement("button");
+  supportButton.classList.add("navButton");
   supportButton.textContent = "Support";  
-  supportButton.classList.add("support");
+  
+
 
   container.appendChild(logoContainer);
   container.appendChild(navContainer);
@@ -38,4 +35,18 @@ export function header() {
   navContainer.appendChild(supportButton);
 
 
+  featuresButton.addEventListener("click", function() {
+    resetPage();
+    featuresPage();
+  });
+
+  supportButton.addEventListener("click", function() {
+    resetPage();
+    supportPage();
+  });
+
+  logoContainer.addEventListener("click", function() {
+    resetPage();
+    homePage();
+  });
 }

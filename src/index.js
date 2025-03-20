@@ -7,12 +7,18 @@
 
       
 */
-
-import homePage from "./modules/welcomePage.js";
+import "/src/modules/style.css";
+import {homePage} from "./modules/welcomePage.js";
 import {resetPage} from "./modules/resetPage.js";
+import {featuresPage} from "./modules/featuresPage.js";
+import {supportPage} from "./modules/supportPage.js";
 import {header} from "./modules/header.js";
 
 
 resetPage();
-header();
+header(homePage, supportPage, resetPage, featuresPage);
 homePage();
+
+
+
+

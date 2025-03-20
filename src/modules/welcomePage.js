@@ -1,6 +1,6 @@
 
 // Creates the welcome page
-function homePage() {
+export function homePage() {
     let content = document.getElementById("content")
 
     let text = document.createElement("h1");
@@ -10,6 +10,3 @@ function homePage() {
 
 
 }
-
-
-export default homePage;
