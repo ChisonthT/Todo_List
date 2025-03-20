@@ -1,7 +1,46 @@
 
+function resetPage() {
+  let content = document.getElementById("content");
+  content.remove();
 
+  let newContent = document.createElement("div");
+  newContent.id = "content";
+  document.body.appendChild(newContent);
+}
 
-export function header(homePage, supportPage, resetPage, featuresPage) {
+function homePage() {
+  let content = document.getElementById("content")
+
+  let text = document.createElement("h1");
+  text.textContent = "Welcome to the Todo List!";
+  content.appendChild(text); 
+
+}
+
+function supportPage() {
+  let content = document.getElementById("content")
+  
+  let search = document.createElement("input")
+  search.setAttribute.id = "search";
+  search.type = "text";  
+  search.placeholder = "Search";
+
+  content.appendChild(search);
+}
+
+function featuresPage() {
+  let content = document.getElementById("content");
+
+  let title =document.createElement("h1");
+  title.textContent = "Features";
+  content.appendChild(title);
+
+  let text = document.createElement("p");
+  text.textContent = "This is the features page. You will be able to create, edit , and delete a to do list.";
+  content.appendChild(text);
+}
+
+function header() {
   let container = document.getElementById("header");
   container.classList.add("container"); 
   container.style.height = "100px";
@@ -50,3 +89,6 @@ export function header(homePage, supportPage, resetPage, featuresPage) {
     homePage();
   });
 }
+
+
+export {header, resetPage, homePage, featuresPage, supportPage};
