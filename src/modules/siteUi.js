@@ -52,8 +52,8 @@ function createForm() {
   form.appendChild(listLabel);
   
   let listInput = document.createElement("input");
-  listInput.setAttribute("type", "text");
   listInput.setAttribute("id", "listName");
+  listInput.setAttribute("type", "text");
   listInput.setAttribute("placeholder", "List Name");
   listInput.setAttribute("required", "");
   form.appendChild(listInput);
@@ -112,12 +112,14 @@ function createForm() {
 /* This will refresh the todos section of a page */
 function refreshTodos(content, todoLists){
   for (let i=0; i<todoLists.length; i++){
-    let list = document.createElement("div");
-    list.setAttribute("id", todoLists[i].listName);
+    let listContainer = document.createElement("div");
+    listContainer.setAttribute("id", todoLists[i].listName);
+    content.appendChild(listContainer);
+
     for (let i=0; i<todoLists[i].length; i++){
       let todo = document.createElement("p");
       todo.textContent = todoLists[i].todos[i].title;
-      list.appendChild(todo);
+      listContainer.appendChild(todo);
     }
 
     
@@ -166,19 +168,19 @@ function todoPage() {
     for (let i=0; i<todoLists.length; i++) {
       console.log(todoLists[i].list);
       console.log(listName);
-      if (todoLists[i].listName === listName){
-        todoLists[i].todos.push(new Todo(listName, title, 
+      if (todoLists[i].name == list){
+        todoLists[i].todos.push(new Todo(list, title, 
           description, priority, dueDate, false));
         found = true;
         break;     
       }
 
-      console.log(todoLists[i].listName == listName);
+      console.log(todoLists[i].listName == list);
     }
 
     if (!found) {
-      todoLists.push(new TodoList(listName));
-      todoLists[todoLists.length-1].todos.push(new Todo(listName, title, 
+      todoLists.push(new TodoList(list));
+      todoLists[todoLists.length-1].todos.push(new Todo(list, title, 
         description, priority, dueDate, false));
     }
 
