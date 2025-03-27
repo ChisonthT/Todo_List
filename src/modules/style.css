@@ -15,6 +15,8 @@
     margin:0;
     padding:0;
     cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
 }
 
 .item {
@@ -37,5 +39,17 @@ button {
 }
 
 .todo{
-    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    border: 5px solid green;
+}
+
+.todoTitles{
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
 }

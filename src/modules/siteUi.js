@@ -95,7 +95,6 @@ function createForm() {
 
   let dueDateLabel = document.createElement("label");
   dueDateLabel.textContent = "Due Date";
-  dueDateLabel.setAttribute("id", "dueDate"); 
   dueDateLabel.setAttribute("type", "text");
   dueDateLabel.setAttribute("required", "");
   form.appendChild(dueDateLabel);
@@ -113,23 +112,50 @@ function createForm() {
 /* This will refresh the todos section of a page */
 function refreshTodos(todoContainer, todoLists){
   todoContainer.innerHTML = "";
+
+  /* Creates the todo list gui*/
   for (let i=0; i<todoLists.length; i++){
     let listContainer = document.createElement("div");
     listContainer.classList.add("list");
     listContainer.setAttribute("id", todoLists[i].name);
-    let listTitle = document.createElement("h2");
+    let listTitle = document.createElement("button");
+    listTitle.classList.add("todoTitles");
     listTitle.textContent = todoLists[i].name;
     listContainer.appendChild(listTitle);
     todoContainer.appendChild(listContainer);
 
+    /* Creates todo gui*/
     for (let j=0; j<todoLists[i].todos.length; j++){
       
       let container = document.createElement("div");
       container.classList.add("todo");
-      let todo = document.createElement("p");
-      todo.textContent = todoLists[i].todos[j].title;
+      listContainer.appendChild(container);
 
-    
+      let todo = document.createElement("button");
+      todo.classList.add("todoTitles");
+      todo.textContent = todoLists[i].todos[j].title;
+      container.appendChild(todo);
+
+      let priorityVal= document.createElement("p");
+      priorityVal.textContent = todoLists[i].todos[j].priority;
+      container.appendChild(priorityVal);
+
+      let date = document.createElement("p");
+      date.textContent = todoLists[i].todos[j].dueDate;
+      container.appendChild(date);
+
+      let desc = document.createElement("p");
+      desc.textContent = todoLists[i].todos[j].description;
+      container.appendChild(desc);
+
+      let editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        console.log("Edit");
+      });
+      container.appendChild(editButton);
+
       let deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
       deleteButton.addEventListener("click", function(event) {
@@ -138,11 +164,7 @@ function refreshTodos(todoContainer, todoLists){
         todoLists = deleteTodo(todoLists, i, j);
         refreshTodos(todoContainer, todoLists);
       });
-      
-      
-      container.appendChild(todo);
-      container.appendChild(deleteButton);
-      listContainer.appendChild(container);
+      container.appendChild(deleteButton); 
     }
 
   }
@@ -160,17 +182,22 @@ function todoPage() {
   let inputContainer = document.createElement("div");
   inputContainer.classList.add("container");
   inputContainer.setAttribute("id", "inputContainer");
+  content.appendChild(inputContainer);
+
+  let formContainer = document.createElement("div");
+  formContainer.classList.add("container");
+  formContainer.setAttribute("id", "formContainer");
+  inputContainer.appendChild(formContainer);
 
   /* this will hold the todo list*/
   let todoContainer = document.createElement("div");
   todoContainer.classList.add("container");
   todoContainer.setAttribute("id", "todoContainer");
-
-  content.appendChild(inputContainer);
   content.appendChild(todoContainer);
 
+  
   /* Adds the form to the input container */
-  inputContainer.appendChild(createForm());
+  formContainer.appendChild(createForm());
 
   /* Create the button to create a new todo */
   let newTodo = document.createElement("button");
@@ -230,11 +257,13 @@ function header() {
   logoContainer.appendChild(btn);
   
   let navContainer = document.createElement("div");
+  
   navContainer.classList.add("nav","container");
   navContainer.style.flex = "auto";
   
   let todoButton = document.createElement("button");
-  todoButton.classList.add("todoButton");
+  todoButton.classList.add("navButton");
+  todoButton.setAttribute("id","todoButton");
   todoButton.textContent = "To Do List";
 
   let featuresButton = document.createElement("button");
