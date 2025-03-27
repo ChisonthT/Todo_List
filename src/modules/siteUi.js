@@ -56,6 +56,7 @@ function createForm() {
   listInput.setAttribute("type", "text");
   listInput.setAttribute("placeholder", "List Name");
   listInput.setAttribute("required", "");
+  listInput.setAttribute("value", "List 1");
   form.appendChild(listInput);
   
   let titleLabel = document.createElement("label");
@@ -128,16 +129,19 @@ function refreshTodos(todoContainer, todoLists){
       let todo = document.createElement("p");
       todo.textContent = todoLists[i].todos[j].title;
 
-      /*
+    
       let deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
       deleteButton.addEventListener("click", function(event) {
         event.preventDefault();
         
         todoLists = deleteTodo(todoLists, i, j);
+        refreshTodos(todoContainer, todoLists);
       });
-      */
+      
+      
       container.appendChild(todo);
+      container.appendChild(deleteButton);
       listContainer.appendChild(container);
     }
 
@@ -171,6 +175,7 @@ function todoPage() {
   /* Create the button to create a new todo */
   let newTodo = document.createElement("button");
   newTodo.textContent = "New Todo";
+  newTodo.setAttribute("id","newTodo");
   newTodo.addEventListener("click", function(event) {
 
     createTodo();

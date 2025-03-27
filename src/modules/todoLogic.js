@@ -32,14 +32,15 @@ function createTodo() {
 }
 
 function deleteTodo(todoLists, i, j) {
-  /*
   for (let i=0; i<todoLists.length; i++) {
     if (todoLists[i].name == listName){
       for (let j=0; j<todoLists[i].todos.length; j++) {
-        if (todoLists[i].todos[j].title == target)
+        if (todoLists[i].todos[j].title == target){
+          todoLists[i].todos.splice(j,1);
+        }
       }
     }
-  } */
+  }
 
   todoLists[i].todos.splice(j, 1);
   console.log(todoLists);
