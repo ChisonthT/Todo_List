@@ -110,19 +110,37 @@ function createForm() {
 }
 
 /* This will refresh the todos section of a page */
-function refreshTodos(content, todoLists){
+function refreshTodos(todoContainer, todoLists){
+  todoContainer.innerHTML = "";
   for (let i=0; i<todoLists.length; i++){
     let listContainer = document.createElement("div");
-    listContainer.setAttribute("id", todoLists[i].listName);
-    content.appendChild(listContainer);
+    listContainer.classList.add("list");
+    listContainer.setAttribute("id", todoLists[i].name);
+    let listTitle = document.createElement("h2");
+    listTitle.textContent = todoLists[i].name;
+    listContainer.appendChild(listTitle);
+    todoContainer.appendChild(listContainer);
 
-    for (let i=0; i<todoLists[i].length; i++){
+    for (let j=0; j<todoLists[i].todos.length; j++){
+      
+      let container = document.createElement("div");
+      container.classList.add("todo");
       let todo = document.createElement("p");
-      todo.textContent = todoLists[i].todos[i].title;
-      listContainer.appendChild(todo);
+      todo.textContent = todoLists[i].todos[j].title;
+
+      /*
+      let deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        
+        todoLists = deleteTodo(todoLists, i, j);
+      });
+      */
+      container.appendChild(todo);
+      listContainer.appendChild(container);
     }
 
-    
   }
 }
 
@@ -154,6 +172,8 @@ function todoPage() {
   let newTodo = document.createElement("button");
   newTodo.textContent = "New Todo";
   newTodo.addEventListener("click", function(event) {
+
+    createTodo();
     event.preventDefault();
     
     
@@ -166,16 +186,12 @@ function todoPage() {
 
     let found = false;
     for (let i=0; i<todoLists.length; i++) {
-      console.log(todoLists[i].list);
-      console.log(listName);
       if (todoLists[i].name == list){
         todoLists[i].todos.push(new Todo(list, title, 
           description, priority, dueDate, false));
         found = true;
         break;     
       }
-
-      console.log(todoLists[i].listName == list);
     }
 
     if (!found) {
@@ -185,7 +201,9 @@ function todoPage() {
     }
 
     form.reset();
-    console.log(todoLists);
+
+    
+    refreshTodos(todoContainer, todoLists);
 
   });
 

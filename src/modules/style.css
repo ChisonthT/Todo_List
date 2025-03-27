@@ -1,4 +1,4 @@
-/* /*header rules
+/*header rules */
 .container {
     display: flex;
     flex-direction: row;
@@ -22,14 +22,20 @@
 }
 
 
-/* main page rules 
+/*main page rules */
 body {
-    background-color: grey;
+    background-color: darkslategrey;
 
 }
 
 button {
-    background-color: purple;
+    background-color: darkgrey;
 }
 
-*/
+.list{
+    border: 1px solid purple;
+}
+
+.todo{
+    border: 1px solid black;
+}
