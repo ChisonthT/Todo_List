@@ -1,9 +1,40 @@
+:root {
+    --grey: #F2EFE7;
+    --teal: #9ACBD0;
+    --sea: #48A6A7;
+    --cold: #006A71;
+}
+
+* {
+    background-color: #9ACBD0;
+}
+
+text {
+    color: var(--grey);
+}
+
+p {
+    color: var(--grey);
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    word-break:break-all;
+}
+
+button {
+    color: var(--grey);
+}
+
+label {
+    color: var(--grey);
+}
+
+
 /*header rules */
 .container {
     display: flex;
     flex-direction: row;
-    
-    background-color: lightblue;
+    border-radius: 30px;
+    background-color: var(--cold);
 
 }
 
@@ -26,30 +57,109 @@
 
 /*main page rules */
 body {
-    background-color: darkslategrey;
 
 }
 
 button {
-    background-color: darkgrey;
 }
 
+
+/* todo page */
+.todoContainer{
+    display:flex;
+    justify-content:space-around;
+    align-items: baseline;
+    flex-wrap:wrap;
+    align-content:space-around;
+    padding-top:10px;
+
+}
+
+.evrcontainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    flex:auto;
+    margin:10px;
+    padding:3px;
+    
+}
+
+.infocontainer{
+    display:flex;
+    justify-content:space-between;
+    padding-left:4px;
+    padding-right:4px;
+}
+
+.btncontainer{
+    display:flex;
+    flex:auto;
+    justify-content:space-between;
+}
 .list{
-    border: 1px solid purple;
+    background-color:var(--cold);
+    justify-content:center;
+    border-radius: 15px;
+    padding-top:5px;
+    animation: fadeIn 0.3s ease-in-out;
+    
 }
 
 .todo{
+    flex:auto;
     height: 200px;
     width: 200px;
-    border: 5px solid green;
+    margin:10px;
+    padding:3px;
+    border-radius: 15px;
+    -webkit-box-shadow: 9px 3px 20px 0px rgba(0,0,0,0.44); 
+    box-shadow: 9px 3px 20px 0px rgba(0,0,0,0.44);
+    animation: fadeIn 0.5s ease-in-out;
+    background-color: var(--sea);
 }
 
+.todo *{
+    background-color: var(--sea);
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 .todoTitles{
+    flex:auto;
+    justify-content: center;
     background:none;
+    
     border:none;
-    margin:0;
-    padding:0;
+    margin:3px;
+    padding:2px;
     cursor: pointer;
     font-size: larger;
     font-weight: bold;
+}
+
+.high{
+    color: red;
+}
+
+.medium{
+    color: yellow;
+}
+
+.low{
+    color: green;
+}
+
+#priority{
+    inline-size: auto;
 }

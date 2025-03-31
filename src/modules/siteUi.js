@@ -118,11 +118,12 @@ function refreshTodos(todoContainer, todoLists){
     let listContainer = document.createElement("div");
     listContainer.classList.add("list");
     listContainer.setAttribute("id", todoLists[i].name);
+    todoContainer.appendChild(listContainer);
+
     let listTitle = document.createElement("button");
     listTitle.classList.add("todoTitles");
     listTitle.textContent = todoLists[i].name;
     listContainer.appendChild(listTitle);
-    todoContainer.appendChild(listContainer);
 
     /* Creates todo gui*/
     for (let j=0; j<todoLists[i].todos.length; j++){
@@ -136,17 +137,39 @@ function refreshTodos(todoContainer, todoLists){
       todo.textContent = todoLists[i].todos[j].title;
       container.appendChild(todo);
 
-      let priorityVal= document.createElement("p");
-      priorityVal.textContent = todoLists[i].todos[j].priority;
-      container.appendChild(priorityVal);
+      let evrcontainer = document.createElement("div");
+      evrcontainer.classList.add("evrcontainer");
+      container.appendChild(evrcontainer);
+
+      let infocontainer = document.createElement("div");
+      infocontainer.classList.add("infocontainer");
+      evrcontainer.appendChild(infocontainer);
+
+      let btncontainer = document.createElement("div");
+      btncontainer.classList.add("btncontainer");
+      container.appendChild(btncontainer);
 
       let date = document.createElement("p");
       date.textContent = todoLists[i].todos[j].dueDate;
-      container.appendChild(date);
+      infocontainer.appendChild(date);
+
+      let priorityVal= document.createElement("p");
+      priorityVal.textContent = todoLists[i].todos[j].priority;
+      if (todoLists[i].todos[j].priority == "High"){
+        priorityVal.classList.add("high");
+      }
+      else if (todoLists[i].todos[j].priority == "Medium"){
+        priorityVal.classList.add("medium");
+      }
+      else if (todoLists[i].todos[j].priority == "Low"){
+        priorityVal.classList.add("low");
+      }
+      infocontainer.appendChild(priorityVal);
+
 
       let desc = document.createElement("p");
       desc.textContent = todoLists[i].todos[j].description;
-      container.appendChild(desc);
+      evrcontainer.appendChild(desc);
 
       let editButton = document.createElement("button");
       editButton.textContent = "Edit";
@@ -154,7 +177,7 @@ function refreshTodos(todoContainer, todoLists){
         event.preventDefault();
         console.log("Edit");
       });
-      container.appendChild(editButton);
+      btncontainer.appendChild(editButton);
 
       let deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
@@ -164,7 +187,7 @@ function refreshTodos(todoContainer, todoLists){
         todoLists = deleteTodo(todoLists, i, j);
         refreshTodos(todoContainer, todoLists);
       });
-      container.appendChild(deleteButton); 
+      btncontainer.appendChild(deleteButton); 
     }
 
   }
@@ -191,7 +214,7 @@ function todoPage() {
 
   /* this will hold the todo list*/
   let todoContainer = document.createElement("div");
-  todoContainer.classList.add("container");
+  todoContainer.classList.add("todoContainer");
   todoContainer.setAttribute("id", "todoContainer");
   content.appendChild(todoContainer);
 
@@ -252,9 +275,11 @@ function header() {
   let logoContainer = document.createElement("div");
   logoContainer.classList.add("logo", "container");
   logoContainer.style.flexGrow = "2";
-  let btn = document.createElement("button");
-  btn.textContent = "Logo";
-  logoContainer.appendChild(btn);
+  
+  let logo = document.createElement("img");
+  logo.setAttribute("src", "./src/logo.png");
+  logo.setAttribute("alt", "Logo");
+  logoContainer.appendChild(logo);
   
   let navContainer = document.createElement("div");
   
