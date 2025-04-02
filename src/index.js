@@ -3,7 +3,9 @@ import {header, resetPage, homePage, todoPage} from "./modules/siteUi.js";
 
 
 function test() {
-    /* Test data */
+    /* Test data Remove to use real data*/
+
+    
     document.getElementById("todoButton").click();
 
     document.getElementById("listName").value = "Groceries";
@@ -25,6 +27,8 @@ function test() {
     document.getElementById("dueDate").value = "2024-12-14";
     document.getElementById("newTodo").click();
 
+
+    /*
     document.getElementById("listName").value = "Creases";
     document.getElementById("title").value = "Milk";
     document.getElementById("description").value = "Get 2%";
@@ -44,7 +48,7 @@ function test() {
     document.getElementById("priority").value = "Low";
     document.getElementById("dueDate").value = "2024-12-14";
     document.getElementById("newTodo").click();
-
+    */
 }
 
 

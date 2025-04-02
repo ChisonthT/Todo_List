@@ -1,5 +1,5 @@
-import {Todo, TodoList, createTodo, deleteTodo} from "/src/modules/todoLogic.js"
-
+import {Todo, TodoList, deleteTodo} from "/src/modules/todoLogic.js"
+import logoImg from "../logo.png";
 function resetPage() {
   let content = document.getElementById("content");
   content.remove();
@@ -113,6 +113,9 @@ function createForm() {
 function refreshTodos(todoContainer, todoLists){
   todoContainer.innerHTML = "";
 
+  console.log("This the todoLists");
+  console.log(localStorage.getItem("todoLists"));
+
   /* Creates the todo list gui*/
   for (let i=0; i<todoLists.length; i++){
     let listContainer = document.createElement("div");
@@ -183,7 +186,7 @@ function refreshTodos(todoContainer, todoLists){
       deleteButton.textContent = "Delete";
       deleteButton.addEventListener("click", function(event) {
         event.preventDefault();
-        
+        console.log("y tho");
         todoLists = deleteTodo(todoLists, i, j);
         refreshTodos(todoContainer, todoLists);
       });
@@ -197,6 +200,12 @@ function todoPage() {
 
   /* This array will hold all the todo list objects */
   let todoLists = [];
+
+  if (localStorage.getItem("todoLists") !== null) {
+    todoLists = JSON.parse(localStorage.getItem("todoLists"));
+  } else {
+    localStorage.setItem("todoLists", JSON.stringify(todoLists));
+  }
 
   /* Create the main containers for the todo page */
   let content = document.getElementById("content");
@@ -222,13 +231,16 @@ function todoPage() {
   /* Adds the form to the input container */
   formContainer.appendChild(createForm());
 
+  
+  refreshTodos(todoContainer, todoLists);
+
   /* Create the button to create a new todo */
   let newTodo = document.createElement("button");
   newTodo.textContent = "New Todo";
   newTodo.setAttribute("id","newTodo");
   newTodo.addEventListener("click", function(event) {
 
-    createTodo();
+    
     event.preventDefault();
     
     
@@ -257,7 +269,6 @@ function todoPage() {
 
     form.reset();
 
-    
     refreshTodos(todoContainer, todoLists);
 
   });
@@ -277,8 +288,7 @@ function header() {
   logoContainer.style.flexGrow = "2";
   
   let logo = document.createElement("img");
-  logo.setAttribute("src", "./src/logo.png");
-  logo.setAttribute("alt", "Logo");
+  logo.src = logoImg;
   logoContainer.appendChild(logo);
   
   let navContainer = document.createElement("div");
@@ -307,7 +317,11 @@ function header() {
   navContainer.appendChild(featuresButton);
   navContainer.appendChild(supportButton);
 
-
+  logoContainer.addEventListener("click", function() {
+    resetPage();
+    homePage();
+  });
+  
   featuresButton.addEventListener("click", function() {
     resetPage();
     featuresPage();
@@ -318,10 +332,6 @@ function header() {
     supportPage();
   });
 
-  logoContainer.addEventListener("click", function() {
-    resetPage();
-    homePage();
-  });
 
   todoButton.addEventListener("click", function() {
     resetPage();

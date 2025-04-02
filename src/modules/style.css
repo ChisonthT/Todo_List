@@ -63,6 +63,21 @@ body {
 button {
 }
 
+#inputContainer{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5px;
+    padding:2px;
+    background-color: var(--cold);
+}
+
+#form{
+    display:flex;
+    flex:auto;
+    background-color: var(--cold);
+}
 
 /* todo page */
 .todoContainer{
@@ -70,8 +85,8 @@ button {
     justify-content:space-around;
     align-items: baseline;
     flex-wrap:wrap;
-    align-content:space-around;
-    padding-top:10px;
+    align-content:space-between;
+    margin-top:10px;
 
 }
 
@@ -98,12 +113,14 @@ button {
     flex:auto;
     justify-content:space-between;
 }
+
 .list{
     background-color:var(--cold);
-    justify-content:center;
+    justify-content:center; 
     border-radius: 15px;
-    padding-top:5px;
+    padding-top:10px;
     animation: fadeIn 0.3s ease-in-out;
+    margin-top:5px;
     
 }
 

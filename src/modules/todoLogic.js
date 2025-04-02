@@ -25,12 +25,7 @@ let TodoList = function (name) {
   
     return todoList;
   }
-
-function createTodo() {
-
-
-}
-
+  
 function deleteTodo(todoLists, i, j) {
   for (let i=0; i<todoLists.length; i++) {
     if (todoLists[i].name == listName){
@@ -43,9 +38,12 @@ function deleteTodo(todoLists, i, j) {
   }
 
   todoLists[i].todos.splice(j, 1);
-  console.log(todoLists);
+
+  
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
+  
   return todoLists;
     
 }
 
-export {Todo, TodoList, createTodo, deleteTodo};
+export {Todo, TodoList, deleteTodo};
